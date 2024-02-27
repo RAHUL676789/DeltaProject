@@ -118,7 +118,7 @@ function show2(definitions){
 
 }
 
-
+// error -----your browser not supported audio element------
 
 // function listen(phonetic){
 //       for(let i=0;i<1;i++){
