@@ -1,0 +1,63 @@
+body{
+    text-align: center;
+}
+.btn{
+    height: 200px;
+    width: 200px;
+    border: 10px solid black;
+    border-radius: 20%;
+    margin:2rem;
+    
+}
+.btn-container{
+    display: flex;
+    justify-content: center;
+   
+}
+
+.red{
+    background-color: rgb(227, 46, 46);
+}
+
+.blue{
+    background-color: rgb(37, 37, 236);
+}
+
+.purple{
+    background-color: rgb(169, 11, 140);
+}
+
+.yellow{
+    background-color: rgb(158, 158, 48);
+}
+
+.flash{
+    background-color: white;
+}
+
+.uflash{
+    background-color: rgb(28, 97, 28);
+}
+
+
+.instruction{
+    text-align: left;
+}
+
+.show{
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0;
+}
+
+.hiden{
+    opacity: 0;
+}
+
+.showen{
+    opacity: 1;
+}
+
+.lost{
+    opacity: 0;
+}
