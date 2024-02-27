@@ -146,4 +146,3 @@ show.addEventListener("click",function(){
     ul.classList.add("showen");
     hide.classList.add("showen");
 })
-
