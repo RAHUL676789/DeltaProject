@@ -1,0 +1,217 @@
+<% layout("layouts/boilorplate.ejs") %>
+
+<style>
+    .file-input{
+       
+        display:none;
+    }
+
+    .nondisplay{
+        display: none;
+    }
+
+   .display{
+    display: none;
+   }
+
+    .displayinline{
+        display: inline;
+    }
+
+    
+</style>
+<script>
+    let mapToken= "<%= process.env.MAP_TOJEN %>"
+
+
+</script>
+
+    <body>
+
+        <div class="row mt-3">
+            <div class="col-8 offset-3">
+                <h3><b>
+                    <%=signlisting.tittle%>
+                </b></h3>
+            </div>
+
+            <div class=" card col-8 offset-3 listing-card">
+
+                <div class="col-12 newImage">
+                    <div class="mainImg col-12">
+                        <img class="card-img-top show-img " alt="listing_img" src="<%=signlisting.img[0].url%>">
+                    </div>
+                  
+                        
+                    
+                    <% if (signlisting.img.length > 1) { %>
+                        
+                     <div class="row">
+                        <% for(let i = 1 ;  i <signlisting.img.length;i++) { %>
+                            
+                           <div class="img col-6">
+                            <img class="card-img-top " alt="listing_img" src="<%=signlisting.img[i].url%>">
+                           </div>
+                        
+                        <% } %>
+                     </div>
+
+                    <% } %>
+
+
+                </div>
+               
+
+                <div class="card-body mt-3">
+                   
+                    <p class="card-text">owned by :<i>@<%= signlisting.owner.username %> </i></p>
+
+                       <p class="card-text"> <%= signlisting.description %><br><br></p>
+
+                            <p class="card-text"> &#8377; <%= signlisting.price.toLocaleString("en-IN") %><br></p>
+
+                            <p class="card-text"> <%= signlisting.location %></p>
+                                 
+                            <p class="card-text"> <%= signlisting.country %></p>
+                    
+                </div>
+
+
+                <% if (currUser && signlisting.owner._id.equals(currUser._id)) { %>
+                <div class="file-input-wrapper">
+                   <form action="/listing/<%= signlisting._id %>/newImage" method="post" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" class="file-input display" name="listing[img]">
+                    <label for="fileInput" class="file-input-label">
+                        <i class="fa-solid fa-camera"></i> Add more
+                    </label>
+
+                    <button id="btn" class="btn btn-success display nondisplay">ADD</button>
+                   </form>
+                </div>
+
+            <% }%>
+
+
+        </div>
+
+
+
+ 
+        <% if (currUser && signlisting.owner._id.equals(currUser._id)) { %>
+ 
+
+        <div class="btns mb-5">
+            <a href="/listing/<%= signlisting._id %>/edit" class="btn btn-dark  offset-3 mb-3">Edit </a>
+        
+        
+            <form method="post" action="/listing/<%= signlisting._id %>?_method=Delete"
+                onsubmit="return deleteFunc()">
+                <button class="btn btn-dark offset-4 mb-3">Delete</button>
+            </form>
+
+        </div>
+         <% } %> 
+
+            <br>
+            <hr>
+           
+
+            <div class=" col-8 offset-3 ">
+                <% if (currUser) { %>
+                    <h3>Leave a Review :</h3>
+               <form action="/listing/<%= signlisting._id %>/reviews" method="post" novalidate class="needs-validation">
+               
+
+                <div class="mt-3">
+                    <label for="rating" class="form-label">Rate Us</label>
+
+                <fieldset class="starability-slot">
+                   
+                    <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                  </fieldset>
+
+                </div>
+
+
+                <div class="mt-3">
+                    <label for="comment" class="form-label">FeedBack</label>
+                    <textarea id="comment" class="form-control" cols="2" rows="4" name="review[comment]" required></textarea>
+                    <div class="invalid-feedback">Please Submit some comments</div>
+                </div>
+                <button class="btn btn-outline-dark mt-3">Submit</button>
+               </form>
+              
+               <% } %>
+
+               <% if (signlisting.reviews.length > 0) { %>
+                
+             
+              
+               <p> <b> All Reviews :</b></p>
+
+             <div class="row">
+              
+            
+              
+               <% for( review of signlisting.reviews ) { %>
+              <div class="card col-5 ms-3 mt-3">
+                <h5 class="card-title">@<i> <%= review.author.username %></i></h5>
+                <p class="starability-result card-text" data-rating="<%= review.rating %>"></p>
+                <p class="card-text"> <p> <%= review.comment %></p>
+              
+                <% if (currUser) { %>
+                    <form action="/listing/<%= signlisting.id %>/reviews/<%= review._id %>?_method=delete" class="mb-3" method="post">
+                        <button class="btn btn-sm btn-dark">Delete</button>
+                    </form>
+                 
+                    <% } %>
+                  </div>
+               <% } %>
+            </div>
+        </div>  
+        <% } %>  
+       <br> 
+
+       <div class=" col-6 offset-3 mt-3 mb-3 ">
+           <div id="map">
+                <h3>where you'll be</h3>
+          </div>
+      </div>
+
+    </body>
+
+    <script>
+            
+             let btn = document.querySelector(".btn-success");
+            let inp =document.getElementById("fileInput");
+
+            inp.addEventListener('change',()=>{
+            
+            inp.classList.toggle("displayinline");
+    
+            btn.classList.toggle("displayinline");
+            let lable = document.querySelector(".file-input-label");
+            lable.style.display="none";
+        })
+
+
+        btn.addEventListener("click",()=>{
+          
+               inp.classList.toggle("display");
+    
+               btn.classList.toggle("display");
+               lable.style.display="inline";
+        })
+
+      
+    </script>

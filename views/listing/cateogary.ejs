@@ -1,0 +1,57 @@
+<% layout("layouts/boilorplate.ejs") %>
+
+<style>
+    .row{
+        margin-top:1.5rem ;
+    }
+
+    .row a{
+        color: black;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+
+    <div class="row">
+
+
+
+       
+         
+       
+
+        <% for( i=0; i< cateogaryListing.length; i++ ) { %>
+
+          
+                <div class="col-md-6">
+                    <a href="/listing/<%= cateogaryListing[i]._id %>" class="card-listing-link">
+                    <div class="card listing-card">
+                        <img class="card-img-top" src="<%= cateogaryListing[i].img[0].url %>" alt="listing"
+                            style="height:20rem ;">
+
+
+                        <div class="card-img-overlay">
+                            <%= cateogaryListing[i].tittle %>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b>
+                                    <%= cateogaryListing[i].tittle %>
+                                </b>
+                                <br>
+                                &#8377; <%= cateogaryListing[i].price.toLocaleString("en-IN") %>/Night<i
+                                        class="tax-info">&nbsp; &nbsp;+18%GST </i>
+
+                            </p>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+            
+                <% } %>
+
+    </div>
+
+
+</body>

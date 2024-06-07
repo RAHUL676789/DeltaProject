@@ -1,0 +1,91 @@
+<% layout("layouts/boilorplate.ejs") %>
+
+
+    <body>
+
+        <div class="row col-8 offset-2 mb-3">
+
+
+            <form method="post" action="/listing" class="needs-validation" novalidate enctype="multipart/form-data">
+                <br>
+                <h3> Create a new Listing</h3>
+                <div class="mb-3 border-bottom">
+                    <label for="tittle" class="form-label">Tittle</label>
+                    <input type="text" name="listing[tittle]" placeholder="enter tittle" class="form-control" id="tittle" required>
+                    <div class="valid-feedback">Tittle Looks Good !</div>
+                    <div class="invalid-feedback">Tittle should be valid</div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <input type="text" name="listing[description]" placeholder="enter description" class="form-control" id="description" required>
+                   
+                    <div class="invalid-feedback">Description should be valid</div>
+                </div>
+
+    
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload Image</label>
+                    <input type="file" name="listing[img]" placeholder="link/url" class="form-control" id="image" required>
+                   
+                </div>
+
+
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" name="listing[price]" placeholder="enter price" class="form-control" id="price" required>
+                        <div class="valid-feedback">Price Looks Good !</div>
+                        <div class="invalid-feedback">Price should be valid</div>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="location" class="form-label">location</label>
+                        <input type="text" name="listing[location]" placeholder="enter location" class="form-control" id="location" required>
+                       
+                        <div class="invalid-feedback">location should be valid</div>
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" name="listing[country]" placeholder="enter country" class="form-control" id="country"required>
+                   
+                    <div class="invalid-feedback">Country should be valid</div>
+                </div>
+
+
+                <div class="mb-3">
+                  
+              
+
+
+                <label for="browser">Choose your cateogary :</label>
+                <input list="browsers" id="browser" name="listing[cateogary]" placeholder="Type to search..." required class="cateogary ">
+                <datalist id="browsers">
+                    <option value="Trending">
+                    <option value="Iconic City">
+                    <option value="Rooms">
+                    <option value="Mountain">
+                    <option value="Castle">
+                    <option value="Amazing Tools">
+                    <option value="Camping">
+                    <option value="Farms">
+                    <option value="Arctic">
+                    
+                </datalist>
+
+            </div>
+                <br>
+                <br>
+                <button class="btn btn-success offset-4 mb-3">Add</button>
+
+
+            </form>
+
+        </div>
+        
+    </body>

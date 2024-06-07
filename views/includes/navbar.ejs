@@ -1,0 +1,79 @@
+<style>
+  .search-form{
+    display: flex;
+  }
+
+  .search-inp{
+    margin-right: 0.5rem;
+  }
+
+  .search-btn{
+    border-radius: 25px;
+    background-color:#fe424d;
+    color: #fff;
+  }
+  .search-btn i{
+    display: inline;
+    margin-right: 0.3rem;
+  }
+
+  .search-btn:hover{
+    border-radius: 25px;
+    background-color:#fe424d;
+    color: #fff;
+  }
+  .search-inp{
+    border-radius: 15px;
+    padding-right: 0.35rem;
+   
+  }
+
+</style>
+
+
+<body>
+
+<nav class="navbar navbar-expand-sm bg-body-light border-bottom sticky-top bg-white">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/listing"><i class="fa-regular fa-compass"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+
+        <div class="navbar-nav">
+       
+          <a class="nav-link" href="/listing">Explore</a>
+        
+        </div>
+
+        <div class="search-form ms-auto">
+         <form  class="search-form " action="/listing/search" method="get">
+
+        
+            <input class="form-control mr-sm-2 search-inp" type="search" placeholder="Search destination" aria-label="Search" name="destination">
+            <button class="btn my-2 my-sm-0 search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          </form>
+        </div>
+
+        <div class="navbar-nav ms-auto">
+          <a class="nav-link" href="/listing/new">Airbnb your home</a>
+          <% if (!currUser) { %>
+            <a class="nav-link " aria-current="page" href="/signUp"><b>Signup</b></a>
+            <a class="nav-link" href="/login"><b>log-in</b></a>
+           
+          <% } %>
+         <% if (currUser) { %>
+          <a class="nav-link" href="/logout"><b>Logout</b></a>
+         <% } %>
+         
+        </div>
+
+
+
+      </div>
+    </div>
+  </nav>
+  <script src="/nav.js"></script>
+  </body>
