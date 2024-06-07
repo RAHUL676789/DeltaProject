@@ -28,7 +28,7 @@
 
         <div class="mb-3  mt-3">
             <label for="img" class="form-label">choose your file</label>
-            <input type="file" name="listing[img]" class="form-control" id="img"  required>
+            <input type="file" name="listing[img]" class="form-control" id="img" >
             <div class="invalid-feedback">Image link should be valid</div>
         </div>
       
@@ -53,6 +53,28 @@
             <input type="text" name="listing[country]" placeholder="enter country" class="form-control" id="country" value="<%= findlisting.country %>"required>
             <div class="invalid-feedback">Country should be valid</div>
         </div>
+
+        <div class="mb-3 mt-3">
+                  
+              
+
+
+            <label for="browser">Change your cateogary :</label>
+                <input list="browsers" id="browser" name="listing[cateogary]" placeholder="Type to search..." required class="cateogary " value="<%= findlisting.cateogary %>">
+                <datalist id="browsers">
+                    <option value="Trending">
+                    <option value="Iconic City">
+                    <option value="Rooms">
+                    <option value="Mountain">
+                    <option value="Castle">
+                    <option value="Amazing Tools">
+                    <option value="Camping">
+                    <option value="Farms">
+                    <option value="Arctic">
+                    
+                </datalist>
+
+         </div>
        
         <button class="btn btn-dark mt-3">Edit</button>
     </form>
